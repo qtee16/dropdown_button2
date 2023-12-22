@@ -44,8 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
             isExpanded: true,
-            hint: const Row(
-              children: [
+            hint: Row(
+              children: const [
                 Icon(
                   Icons.list,
                   size: 16,

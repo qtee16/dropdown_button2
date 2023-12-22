@@ -207,8 +207,8 @@ class _DropdownItemButtonState<T> extends State<_DropdownItemButton<T>> {
         parent: widget.route.animation!, curve: Interval(start, end));
 
     Widget child = Container(
-      padding: (menuItemStyle.padding ?? _kMenuItemPadding)
-          .resolve(widget.textDirection),
+      height: menuItemStyle.height,
+      padding: menuItemStyle.padding ?? _kMenuItemPadding,
       child: dropdownItem,
     );
     // An [InkWell] is added to the item only if it is enabled
@@ -217,15 +217,17 @@ class _DropdownItemButtonState<T> extends State<_DropdownItemButton<T>> {
       final bool isSelectedItem = !widget.route.isNoSelectedItem &&
           widget.itemIndex == widget.route.selectedIndex;
       child = InkWell(
-        autofocus: isSelectedItem,
         enableFeedback: widget.enableFeedback,
         onTap: _handleOnTap,
         onFocusChange: _handleFocusChange,
         borderRadius: menuItemStyle.borderRadius,
         overlayColor: menuItemStyle.overlayColor,
-        child: isSelectedItem
-            ? menuItemStyle.selectedMenuItemBuilder?.call(context, child) ??
-                child
+        child: isSelectedItem && menuItemStyle.selectedMenuItemBuilder != null
+            ? Container(
+              height: menuItemStyle.height,
+              padding: menuItemStyle.padding ?? _kMenuItemPadding,
+              child: menuItemStyle.selectedMenuItemBuilder!.call(context, child),
+            )
             : child,
       );
     }

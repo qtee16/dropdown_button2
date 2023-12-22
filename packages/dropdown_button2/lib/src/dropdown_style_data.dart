@@ -195,6 +195,7 @@ class MenuItemStyleData {
   /// Creates a MenuItemStyleData.
   const MenuItemStyleData({
     this.padding,
+    this.height,
     this.borderRadius,
     this.overlayColor,
     this.selectedMenuItemBuilder,
@@ -205,6 +206,8 @@ class MenuItemStyleData {
   /// The horizontal padding will be added to the button's padding as well, ensuring that
   /// the menu width and button width adapt seamlessly to the maximum width of the items.
   final EdgeInsetsGeometry? padding;
+
+  final double? height;
 
   /// The border radius of the menu item.
   final BorderRadius? borderRadius;
